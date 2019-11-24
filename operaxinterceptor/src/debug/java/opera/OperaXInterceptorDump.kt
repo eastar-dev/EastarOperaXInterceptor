@@ -5,7 +5,6 @@ import dalvik.system.DexFile
 import dev.eastar.operaxinterceptor.interceptor.OperaXInterceptor
 import java.util.concurrent.Executors
 
-@Suppress("unused", "DEPRECATION")
 fun Application.operaXInterceptorDump() {
     Executors.newSingleThreadExecutor().execute {
         runCatching {
@@ -17,8 +16,7 @@ fun Application.operaXInterceptorDump() {
                     .filterNot { it.startsWith(thisClass) }
                     .filterNot { it.contains('$') }
                     .map { Class.forName(it) }
-                    .filter {
-                        parentClass.isAssignableFrom(it) }
+                    .filter { parentClass.isAssignableFrom(it) }
                     .forEach { android.util.Log.w("OperaXInterceptorDump", it.toString()) }
         }
     }

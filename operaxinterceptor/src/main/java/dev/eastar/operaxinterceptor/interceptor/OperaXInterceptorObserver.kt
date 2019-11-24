@@ -22,7 +22,6 @@ import java.util.*
 
 object OperaXInterceptorObserver : Observable() {
     fun notifyObservers(type: Type) {
-//        Log.e(javaClass, ">>", type)
         setChanged()
         super.notifyObservers(type)
     }

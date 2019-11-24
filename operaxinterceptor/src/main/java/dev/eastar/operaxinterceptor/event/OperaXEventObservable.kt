@@ -15,7 +15,6 @@
  */
 package dev.eastar.operaxinterceptor.event
 
-//import android.log.Log
 import android.os.Looper
 import java.util.*
 
@@ -39,7 +38,6 @@ object OperaXEventObservable : Observable() {
             throw IllegalThreadStateException("!event obj must be in MainThread")
 
         setChanged()
-//        Log.e("notifyObservers($data)")
         super.notifyObservers(data)
     }
 
