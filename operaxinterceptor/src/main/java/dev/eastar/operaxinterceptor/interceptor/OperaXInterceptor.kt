@@ -16,33 +16,27 @@
 package dev.eastar.operaxinterceptor.interceptor
 
 import android.app.Activity
-import android.log.Log
-//import android.log.Log
-
 import java.util.*
 
 abstract class OperaXInterceptor : OperaXInitializer(), Observer {
     override fun onCreate(): Boolean {
-//        Log.e("OperaXInterceptor", "reg", javaClass.simpleName)
         OperaXInterceptorObserver.addObserver(this)
         return super.onCreate()
     }
 
     override fun update(observable: Observable, data: Any) {
-        Log.w("OperaXInterceptor", javaClass.simpleName, "<<", data)
         if ((data as Type).activity.javaClass.getAnnotation(OperaXSkip::class.java) != null) {
-            Log.w("OperaXInterceptor", javaClass.simpleName, "<<", data)
             return
         }
 
         try {
-            when (val type = data as Type) {
-                is ON_CREATE -> onCreate(type.activity)
-                is ON_DESTROY -> onDestroy(type.activity)
-                is ON_START -> onStart(type.activity)
-                is ON_STOP -> onStop(type.activity)
-                is ON_RESUME -> onResume(type.activity)
-                is ON_PAUSE -> onPause(type.activity)
+            when (data) {
+                is ON_CREATE -> onCreate(data.activity)
+                is ON_DESTROY -> onDestroy(data.activity)
+                is ON_START -> onStart(data.activity)
+                is ON_STOP -> onStop(data.activity)
+                is ON_RESUME -> onResume(data.activity)
+                is ON_PAUSE -> onPause(data.activity)
                 else -> Unit //Log.e("!undefined message")
             }
         } catch (e: Exception) {

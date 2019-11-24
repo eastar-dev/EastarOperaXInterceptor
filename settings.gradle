@@ -1,3 +1,2 @@
-include ':app'
 include ':operaxinterceptor'
-rootProject.name='EastarOperaXInterceptorDemo'
+

@@ -1,26 +1,10 @@
-[![](https://jitpack.io/v/djrain/EastarPermission.svg)](https://jitpack.io/#djrain/EastarPermission)
+[![](https://jitpack.io/v/djrain/EastarOperaXInterceptor.svg)](https://jitpack.io/#djrain/EastarOperaXInterceptor)
 
 
-# What is permission?
-
-After Marshmallow in Android<br/>
-안드로이드에서는 권한을 요청합니다.
+# What is EastarOperaXInterceptor?
 
 This library is a simple library designed to help you with authorization requests.<br/>
-이 라이브러리는 권한 요청 작업 도움을 주고자 만들어진 심플한 라이브러리 입니다.
-
-For more information about Android privilege requests, please see:<br/>
-안드로이드 권한 요청에 대한 상세한 설명은 아래 주소를 참고 하시면 됩니다.<br/>
-([See permissions overview](https://developer.android.com/guide/topics/permissions/overview))<br/>
-
-You can make check function yourself.<br/>
-([How to Requesting Permissions at RunTime](http://developer.android.com/intl/ko/training/permissions/requesting.html))<br/>
-
-안드로이드 권한 요청작업을 위해서는 다음과 같은 함수들을 사용해야 하며<br/>
-(`checkSelfPermission()`, `requestPermissions()`, `onRequestPermissionsResult()`, `onActivityResult()` ...)
-보다 친절한 기능을 위해서는 반복적인 추가 작업이 필요로 합니다.
-
-permission is most of simple and smallest permission check helper.
+이 라이브러리는 전역 이벤트 작업에 도움을 주고자 만들어진 심플한 라이브러리 입니다.
 
 
 <br/><br/>
@@ -30,7 +14,7 @@ permission is most of simple and smallest permission check helper.
 ## Demo
 
 
-![Screenshot](https://github.com/djrain/EastarPermission/blob/readme/demo.gif?raw=true)    
+![Screenshot](https://github.com/djrain/EastarOperaXInterceptor/blob/readme/demo.gif?raw=true)
            
 
 sample RESULTDLG
@@ -63,7 +47,7 @@ sample RESULTDLG
 ```javascript
 
 	dependencies {
-	        implementation 'com.github.djrain:EastarPermission:2.2.2'
+	        implementation 'com.github.djrain:EastarOperaXInterceptor:1.0.0'
 	}
 
 
@@ -81,16 +65,9 @@ If you think this library is useful, please press star button at upside.
 
 
 ### 1. Make PermissionListener
-We will use PermissionListener for Permission Result.
-You will get result to `onPermissionGranted()`, `onPermissionDenied()`
 
 ```javascript
-  var request =  PermissionRequest.builder(this, Manifest.permission.WRITE_EXTERNAL_STORAGE
-                                                , Manifest.permission.READ_CALENDAR)
-          .setRequestMessage("for contact photo save image")
-          .setRequestPositiveButtonText("OK")
-          .setRequestNegativeButtonText("cancel")
-          .run()
+
 ```
 
 <br/>
@@ -98,12 +75,12 @@ You will get result to `onPermissionGranted()`, `onPermissionDenied()`
 ##Customize
 You can customize something ...<br />
 
-* `setRequestMessage(R.string.xxx or CharSequence)`
-* `setRequestPositiveButtonText(R.string.xxx or CharSequence) (default: confirm / 확인)`
-* `setRequestNegativeButtonText(R.string.xxx or CharSequence) (default: close / 닫기)`
-* `setDenyMessage(R.string.xxx or CharSequence)`
-* `setDenyPositiveButtonText(R.string.xxx or CharSequence) (default: close / 닫기)`
-* `setDenyNegativeButtonText(R.string.xxx or CharSequence) (default: setting / 설정)`
+* ``
+* ``
+* ``
+* ``
+* ``
+* ``
 
 <br/><br/>
 
@@ -122,7 +99,7 @@ You can customize something ...<br />
 
 ## License 
  ```code
-Copyright 2016 eastar Jeong
+Copyright 2019 eastar Jeong
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
