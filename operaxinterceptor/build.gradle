@@ -21,4 +21,8 @@ android {
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
+
+    debugImplementation 'com.github.djrain:EastarLog:3.1.1'
+    releaseImplementation 'com.github.djrain:EastarLogNoOp:3.1.1'
+
 }

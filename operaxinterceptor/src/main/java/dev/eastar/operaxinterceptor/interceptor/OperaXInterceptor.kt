@@ -16,13 +16,12 @@
 package dev.eastar.operaxinterceptor.interceptor
 
 import android.app.Activity
+import android.log.Log
 //import android.log.Log
 
 import java.util.*
 
 abstract class OperaXInterceptor : OperaXInitializer(), Observer {
-    interface IMain
-
     override fun onCreate(): Boolean {
 //        Log.e("OperaXInterceptor", "reg", javaClass.simpleName)
         OperaXInterceptorObserver.addObserver(this)
@@ -30,7 +29,12 @@ abstract class OperaXInterceptor : OperaXInitializer(), Observer {
     }
 
     override fun update(observable: Observable, data: Any) {
-//        Log.w("OperaXInterceptor", javaClass.simpleName, "<<", data)
+        Log.w("OperaXInterceptor", javaClass.simpleName, "<<", data)
+        if ((data as Type).activity.javaClass.getAnnotation(OperaXSkip::class.java) != null) {
+            Log.w("OperaXInterceptor", javaClass.simpleName, "<<", data)
+            return
+        }
+
         try {
             when (val type = data as Type) {
                 is ON_CREATE -> onCreate(type.activity)
@@ -52,5 +56,14 @@ abstract class OperaXInterceptor : OperaXInitializer(), Observer {
     protected open fun onResume(activity: Activity) {}
     protected open fun onPause(activity: Activity) {}
 
+    @Target(AnnotationTarget.CLASS)
+    @Retention(AnnotationRetention.RUNTIME)
+    @MustBeDocumented
+    annotation class OperaXMain
+
+    @Target(AnnotationTarget.CLASS)
+    @Retention(AnnotationRetention.RUNTIME)
+    @MustBeDocumented
+    annotation class OperaXSkip
 }
 
