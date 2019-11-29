@@ -15,30 +15,36 @@
  */
 package dev.eastar.operaxinterceptor.event
 
-import android.os.Looper
+import androidx.annotation.MainThread
 import java.util.*
 
 object OperaXEventObservable : Observable() {
+    @MainThread
     @JvmStatic
-    fun notify(obj: Enum<*>) {
+    fun notify(obj: Any) {
         notifyObservers(obj)
     }
 
-    override fun notifyObservers(data: Any?) {
-        if (data == null)
-            throw NullPointerException("!event obj must not null")
-
-        if (data.javaClass.name != "smart.base.EE")
-            throw NullPointerException("!event obj must defined in the smart.base.EE")
-
-        if (data !is Enum<*>)
-            throw NullPointerException("!event obj must Enum")
-
-        if (Looper.myLooper() != Looper.getMainLooper())
-            throw IllegalThreadStateException("!event obj must be in MainThread")
+    override fun notifyObservers(data: Any) {
+        if (data.javaClass.getAnnotation(OperaXEvent::class.java) == null)
+            throw UnsupportedOperationException("!event obj must defined in the ${OperaXEvent::class.java}")
 
         setChanged()
         super.notifyObservers(data)
     }
-
 }
+
+@Target(AnnotationTarget.CLASS)
+@Retention(AnnotationRetention.RUNTIME)
+@MustBeDocumented
+annotation class OperaXEvent
+
+@OperaXEvent
+enum class OperaXEvents {
+    EXIT, LOGOUT;
+}
+
+@OperaXEvent
+data class LOGIN(val data: Any? = null)
+
+
