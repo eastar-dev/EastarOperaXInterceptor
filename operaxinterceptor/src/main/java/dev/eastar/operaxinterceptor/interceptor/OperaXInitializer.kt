@@ -25,6 +25,7 @@ abstract class OperaXInitializer : ContentProvider() {
     abstract fun initialize(application: Application)
 
     override fun onCreate(): Boolean {
+        android.util.Log.d("OperaXInitializer", javaClass.name);
         (context?.applicationContext as? Application)?.let {
             initialize(it)
         }
