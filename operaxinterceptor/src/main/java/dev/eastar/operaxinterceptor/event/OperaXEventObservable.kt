@@ -36,7 +36,6 @@ object OperaXEventObservable : Observable() {
 
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)
-@MustBeDocumented
 annotation class OperaXEvent
 
 @OperaXEvent
