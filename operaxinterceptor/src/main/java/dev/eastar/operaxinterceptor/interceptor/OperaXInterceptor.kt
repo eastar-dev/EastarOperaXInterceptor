@@ -20,8 +20,10 @@ import java.util.*
 
 abstract class OperaXInterceptor : OperaXInitializer(), Observer {
     override fun onCreate(): Boolean {
+        super.onCreate()
         OperaXInterceptorObserver.addObserver(this)
-        return super.onCreate()
+        android.util.Log.d("OperaXInterceptor", javaClass.name)
+        return true
     }
 
     override fun update(observable: Observable, data: Any) {
