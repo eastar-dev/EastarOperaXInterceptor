@@ -27,7 +27,7 @@ object OperaXEventObservable : Observable() {
 
     override fun notifyObservers(data: Any) {
         if (data.javaClass.getAnnotation(OperaXEvent::class.java) == null)
-            throw UnsupportedOperationException("!event obj must defined in the ${OperaXEvent::class.java}")
+            throw UnsupportedOperationException("!event obj must annotation in the ${OperaXEvent::class.java}")
 
         setChanged()
         super.notifyObservers(data)
@@ -41,10 +41,6 @@ annotation class OperaXEvent
 
 @OperaXEvent
 enum class OperaXEvents {
-    EXIT, LOGOUT;
+    Exited, Logouted, Logined;
 }
-
-@OperaXEvent
-data class LOGIN(val data: Any? = null)
-
 
