@@ -10,7 +10,7 @@ public class OperaXEventTest {
     @Test
     public void sendTest() {
         OperaXEventObservable.notify(OperaXEvents.EXIT);
-        OperaXEventObservable.notify(new LOGIN("dfsdfs"));
-        OperaXEventObservable.notify(new LOGIN());
+        OperaXEventObservable.notify(new EventLogin("dfsdfs"));
+        OperaXEventObservable.notify(new EventLogin());
     }
 }

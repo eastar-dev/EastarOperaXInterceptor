@@ -18,7 +18,7 @@ class OperaXEventTestKt {
     @Test
     fun sendTest() {
         notify(OperaXEvents.EXIT)
-        notify(LOGIN("dfsdfs"))
-        notify(LOGIN())
+        notify(EventLogin("dfsdfs"))
+        notify(EventLogin())
     }
 }

@@ -33,13 +33,3 @@ object OperaXEventObservable : Observable() {
         super.notifyObservers(data)
     }
 }
-
-@Target(AnnotationTarget.CLASS)
-@Retention(AnnotationRetention.RUNTIME)
-annotation class OperaXEvent
-
-@OperaXEvent
-enum class OperaXEvents {
-    Exited, Logouted, Logined;
-}
-
