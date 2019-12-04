@@ -9,8 +9,6 @@ import org.junit.runner.RunWith;
 public class OperaXEventTest {
     @Test
     public void sendTest() {
-        OperaXEventObservable.notify(OperaXEvents.EXIT);
-        OperaXEventObservable.notify(new EventLogin("dfsdfs"));
-        OperaXEventObservable.notify(new EventLogin());
+        OperaXEventObservable.notify(OperaXEvents.Exited);
     }
 }
