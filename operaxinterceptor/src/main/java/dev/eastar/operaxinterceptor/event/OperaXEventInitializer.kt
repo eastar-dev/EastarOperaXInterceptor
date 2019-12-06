@@ -19,6 +19,9 @@ import android.app.Activity
 import android.app.Application
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentManager.FragmentLifecycleCallbacks
 import dev.eastar.operaxinterceptor.interceptor.OperaXInitializer
 
 class OperaXEventInitializer : OperaXInitializer() {
@@ -31,22 +34,25 @@ fun Application.operaXEventRegister() {
     registerActivityLifecycleCallbacks(
             object : Application.ActivityLifecycleCallbacks {
                 override fun onActivityCreated(activity: Activity?, bundle: Bundle?) {
-                    (activity as? AppCompatActivity)?.run {
-                        supportFragmentManager.registerFragmentLifecycleCallbacks(object : androidx.fragment.app.FragmentManager.FragmentLifecycleCallbacks() {
-                            override fun onFragmentCreated(fm: androidx.fragment.app.FragmentManager, f: androidx.fragment.app.Fragment, savedInstanceState: Bundle?) {
-                                (f as? OperaXEventObserver)?.let { OperaXEventObservable.addObserver(it) }
-                            }
-
-                            override fun onFragmentDestroyed(fm: androidx.fragment.app.FragmentManager, f: androidx.fragment.app.Fragment) {
-                                (f as? OperaXEventObserver)?.let { OperaXEventObservable.deleteObserver(it) }
-                            }
-                        }, true)
-                    }
-                    (activity as? OperaXEventObserver)?.let { OperaXEventObservable.addObserver(it) }
+                    if (activity is OperaXEventObserver) OperaXEventObservable.addObserver(activity)
+                    if (activity is AppCompatActivity) registerFragment(activity)
                 }
 
                 override fun onActivityDestroyed(activity: Activity?) {
-                    (activity as? OperaXEventObserver)?.let { OperaXEventObservable.deleteObserver(it) }
+                    if (activity is OperaXEventObserver) OperaXEventObservable.deleteObserver(activity)
+                }
+
+
+                fun registerFragment(activity: AppCompatActivity) {
+                    activity.supportFragmentManager.registerFragmentLifecycleCallbacks(object : FragmentLifecycleCallbacks() {
+                        override fun onFragmentCreated(fm: FragmentManager, f: Fragment, savedInstanceState: Bundle?) {
+                            if (f is OperaXEventObserver) OperaXEventObservable.addObserver(f)
+                        }
+
+                        override fun onFragmentDestroyed(fm: FragmentManager, f: Fragment) {
+                            if (f is OperaXEventObserver) OperaXEventObservable.deleteObserver(f)
+                        }
+                    }, true)
                 }
 
                 override fun onActivityStarted(activity: Activity?) {}
