@@ -1,4 +1,4 @@
-[![](https://jitpack.io/v/djrain/EastarOperaXInterceptor.svg)](https://jitpack.io/#djrain/EastarOperaXInterceptor)
+[![](https://jitpack.io/v/eastar-dev/EastarOperaXInterceptor.svg)](https://jitpack.io/#eastar-dev/EastarOperaXInterceptor)
 
 
 # What is EastarOperaXInterceptor?
@@ -14,7 +14,7 @@ This library is a simple library designed to help you with authorization request
 ## Demo
 
 
-![Screenshot](https://github.com/djrain/EastarOperaXInterceptor/blob/readme/demo.gif?raw=true)
+![Screenshot](https://github.com/eastar-dev/EastarOperaXInterceptor/blob/readme/demo.gif?raw=true)
            
 
 sample RESULTDLG
@@ -47,7 +47,7 @@ sample RESULTDLG
 ```javascript
 
 	dependencies {
-	        implementation 'com.github.djrain:EastarOperaXInterceptor:1.0.0'
+	        implementation 'com.github.eastar-dev:EastarOperaXInterceptor:1.0.0'
 	}
 
 
