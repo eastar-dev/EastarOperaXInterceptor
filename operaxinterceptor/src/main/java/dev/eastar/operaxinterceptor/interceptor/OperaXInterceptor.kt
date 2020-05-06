@@ -42,6 +42,7 @@ abstract class OperaXInterceptor : OperaXInitializer(), Observer {
                 else -> Unit //Log.e("!undefined message")
             }
         } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
