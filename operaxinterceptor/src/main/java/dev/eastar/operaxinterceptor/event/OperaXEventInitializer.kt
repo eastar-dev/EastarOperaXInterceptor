@@ -33,12 +33,12 @@ class OperaXEventInitializer : OperaXInitializer() {
 fun Application.operaXEventRegister() {
     registerActivityLifecycleCallbacks(
             object : Application.ActivityLifecycleCallbacks {
-                override fun onActivityCreated(activity: Activity?, bundle: Bundle?) {
+                override fun onActivityCreated(activity: Activity, bundle: Bundle?) {
                     if (activity is OperaXEventObserver) OperaXEventObservable.addObserver(activity)
                     if (activity is AppCompatActivity) registerFragment(activity)
                 }
 
-                override fun onActivityDestroyed(activity: Activity?) {
+                override fun onActivityDestroyed(activity: Activity) {
                     if (activity is OperaXEventObserver) OperaXEventObservable.deleteObserver(activity)
                 }
 
@@ -55,11 +55,11 @@ fun Application.operaXEventRegister() {
                     }, true)
                 }
 
-                override fun onActivityStarted(activity: Activity?) {}
-                override fun onActivityStopped(activity: Activity?) {}
-                override fun onActivityResumed(activity: Activity?) {}
-                override fun onActivityPaused(activity: Activity?) {}
-                override fun onActivitySaveInstanceState(activity: Activity?, bundle: Bundle?) {}
+                override fun onActivityStarted(activity: Activity) {}
+                override fun onActivityStopped(activity: Activity) {}
+                override fun onActivityResumed(activity: Activity) {}
+                override fun onActivityPaused(activity: Activity) {}
+                override fun onActivitySaveInstanceState(activity: Activity, bundle: Bundle) {}
             }
     )
 }

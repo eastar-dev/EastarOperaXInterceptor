@@ -28,13 +28,13 @@ class OperaXInterceptorInitializer : OperaXInitializer() {
 fun Application.operaXInterceptorRegister() {
     registerActivityLifecycleCallbacks(
             object : Application.ActivityLifecycleCallbacks {
-                override fun onActivityCreated(activity: Activity?, bundle: Bundle?) = OperaXInterceptorObserver.notifyObservers(ON_CREATE(activity!!))
-                override fun onActivityDestroyed(activity: Activity?) = OperaXInterceptorObserver.notifyObservers(ON_DESTROY(activity!!))
-                override fun onActivityStarted(activity: Activity?) = OperaXInterceptorObserver.notifyObservers(ON_START(activity!!))
-                override fun onActivityStopped(activity: Activity?) = OperaXInterceptorObserver.notifyObservers(ON_STOP(activity!!))
-                override fun onActivityResumed(activity: Activity?) = OperaXInterceptorObserver.notifyObservers(ON_RESUME(activity!!))
-                override fun onActivityPaused(activity: Activity?) = OperaXInterceptorObserver.notifyObservers(ON_PAUSE(activity!!))
-                override fun onActivitySaveInstanceState(activity: Activity?, bundle: Bundle?) = Unit
+                override fun onActivityCreated(activity: Activity, bundle: Bundle?) = OperaXInterceptorObserver.notifyObservers(ON_CREATE(activity!!))
+                override fun onActivityDestroyed(activity: Activity) = OperaXInterceptorObserver.notifyObservers(ON_DESTROY(activity!!))
+                override fun onActivityStarted(activity: Activity) = OperaXInterceptorObserver.notifyObservers(ON_START(activity!!))
+                override fun onActivityStopped(activity: Activity) = OperaXInterceptorObserver.notifyObservers(ON_STOP(activity!!))
+                override fun onActivityResumed(activity: Activity) = OperaXInterceptorObserver.notifyObservers(ON_RESUME(activity!!))
+                override fun onActivityPaused(activity: Activity) = OperaXInterceptorObserver.notifyObservers(ON_PAUSE(activity!!))
+                override fun onActivitySaveInstanceState(activity: Activity, bundle: Bundle) = Unit
             }
     )
 }
